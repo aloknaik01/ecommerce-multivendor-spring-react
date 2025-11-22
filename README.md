@@ -41,3 +41,14 @@ ShopSphere_MultiVendor/
 - Postman (testing)
 
 ---
+## 🌐API Endpoints Implemented
+
+### **GET /**  
+**Description:** API welcome endpoint to verify backend is running.  
+**Response Example:**
+```json
+{
+  "success": true,
+  "message": "Welcome to ShopSphere Multi-Vendor E-Commerce API",
+  "data": "API Running Successfully"
+}
