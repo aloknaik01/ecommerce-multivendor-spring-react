@@ -8,7 +8,7 @@ This project follows **industry-standard GitHub Flow**, clean architecture, modu
 ###  Completed Till Now
 - Project repository initialized using **GitHub Flow**  
 - Local folder structured as:
--  
+  
 ###  Folder strucuture
 ```java
 ShopSphere_MultiVendor/
@@ -16,3 +16,28 @@ ShopSphere_MultiVendor/
 ├── frontend/ (to be added later)
 └── .idea/
 ```
+---
+
+##  Technologies Used
+
+### **Backend**
+- Java 17+
+- Spring Boot
+- Spring Web
+- Spring Data JPA
+- MySQL 
+- Maven
+
+### **Frontend**
+- React + Vite
+- Tailwind CSS
+- Redux js
+- axios
+- chart js
+
+### **Tools**
+- IntelliJ IDEA
+- Git & GitHub
+- Postman (testing)
+
+---
