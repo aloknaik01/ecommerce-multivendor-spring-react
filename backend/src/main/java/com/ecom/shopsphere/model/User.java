@@ -1,10 +1,8 @@
 package com.ecom.shopsphere.model;
 import com.ecom.shopsphere.domain.USER_ROLE;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
 import java.util.HashSet;
@@ -29,8 +27,11 @@ public class User {
     private String mobile;
     private USER_ROLE role = USER_ROLE.ROLE_CUSTOMER;
 
+    @OneToMany
     private Set<Adress> adress = new HashSet<>();
-    private Set<Coupon > usedCoupop = new HashSet<>();
+    @ManyToMany
+    @JsonIgnore
+    private Set<Coupon> usedCoupon = new HashSet<>();
 
 
 
