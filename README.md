@@ -41,7 +41,7 @@ ShopSphere_MultiVendor/
 - Postman (testing)
 
 ---
-## 🌐API Endpoints Implemented
+## API Endpoints Implemented
 
 ### **GET /**  
 **Description:** API welcome endpoint to verify backend is running.  
@@ -51,4 +51,43 @@ ShopSphere_MultiVendor/
   "success": true,
   "message": "Welcome to ShopSphere Multi-Vendor E-Commerce API",
   "data": "API Running Successfully"
+}
+#  User Model
+
+The **User Model** defines the structure and representation of user data in the application.  
+It is responsible for storing user identity, credentials, and role information.  
+This model forms the backbone of authentication and authorization in the system.
+
+---
+
+## Key Responsibilities
+- Store essential user information  
+- Support secure authentication  
+- Enable role-based access  
+- Map user data to the database using JPA/Hibernate  
+- Maintain consistent structure for all user-related operations  
+
+---
+
+##  User Model (With Lombok)
+
+```java
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String username;
+
+    private String email;
+
+    private String password;
+
+    private String role;
 }
