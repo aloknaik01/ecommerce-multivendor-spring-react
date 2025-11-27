@@ -52,6 +52,7 @@ ShopSphere_MultiVendor/
   "message": "Welcome to ShopSphere Multi-Vendor E-Commerce API",
   "data": "API Running Successfully"
 }
+```
 #  User Model
 
 The **User Model** defines the structure and representation of user data in the application.  
