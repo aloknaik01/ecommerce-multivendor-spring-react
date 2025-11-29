@@ -138,3 +138,62 @@ CREATE TABLE products (
 CREATE INDEX idx_products_name ON products USING gin(to_tsvector('english', name));
 CREATE INDEX idx_products_category ON products(category_id);
 ```
+# Address Model — README
+
+## Overview
+The **Address** model stores user shipping/billing addresses.  
+It is structured for e-commerce systems where one user may have multiple addresses (home, office, etc.).  
+
+This README covers:
+- Database schema  
+- JPA model (with and without Lombok)  
+- JSON examples  
+- Validation rules  
+- Common queries  
+- Example API endpoints  
+
+---
+
+## Schema (Fields)
+
+- `id` — bigint / UUID, primary key  
+- `user_id` — foreign key → Users table  
+- `full_name` — receiver’s name  
+- `phone` — valid phone number  
+- `address_line1` — house / flat / street  
+- `address_line2` — optional  
+- `city` — required  
+- `state` — required  
+- `postal_code` — required  
+- `country` — default `"India"`  
+- `landmark` — optional  
+- `address_type` — `"HOME"` or `"WORK"`  
+- `is_default` — boolean, only one default per user  
+- `created_at`  
+- `updated_at`  
+
+---
+
+## SQL Example (PostgreSQL)
+
+```sql
+CREATE TABLE addresses (
+  id BIGSERIAL PRIMARY KEY,
+  user_id BIGINT NOT NULL,
+  full_name VARCHAR(150) NOT NULL,
+  phone VARCHAR(15) NOT NULL,
+  address_line1 VARCHAR(255) NOT NULL,
+  address_line2 VARCHAR(255),
+  city VARCHAR(120) NOT NULL,
+  state VARCHAR(120) NOT NULL,
+  postal_code VARCHAR(10) NOT NULL,
+  country VARCHAR(80) DEFAULT 'India',
+  landmark VARCHAR(150),
+  address_type VARCHAR(10) DEFAULT 'HOME',
+  is_default BOOLEAN DEFAULT FALSE,
+  created_at TIMESTAMP DEFAULT now(),
+  updated_at TIMESTAMP DEFAULT now()
+);
+
+CREATE INDEX idx_addresses_user_id ON addresses(user_id);
+```
