@@ -197,3 +197,41 @@ CREATE TABLE addresses (
 
 CREATE INDEX idx_addresses_user_id ON addresses(user_id);
 ```
+# Wishlist Model
+
+The `Wishlist` model represents a user's personalized list of products they intend to save for later.  
+Each wishlist belongs to a specific user and can contain multiple products.  
+It uses JPA for ORM mapping and Lombok to reduce boilerplate code.
+
+## 📌 Features
+
+- Each wishlist has a unique auto-generated ID.
+- A **Many-to-One** relationship with the `User` model  
+  → One user can have multiple wishlists.
+- A **Many-to-Many** relationship with the `Product` model  
+  → A wishlist can contain many products, and a product can appear in multiple user wishlists.
+- Uses `HashSet` internally to avoid duplicate product entries.
+- Powered by **Jakarta Persistence API** and **Lombok** annotations.
+
+##  Entity Structure
+
+```java
+@Entity
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
+public class Wishlist {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @ManyToOne
+    private User user;
+
+    @ManyToMany
+    private Set<Product> products = new HashSet<>();
+}
+```
