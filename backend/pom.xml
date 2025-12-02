@@ -12,7 +12,7 @@
 	<artifactId>ShopSphere</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ShopSphere</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Multi Vendor Ecommerce Spring-React Web App</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -40,7 +40,7 @@
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-webmvc</artifactId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
 
 		<dependency>
