@@ -235,3 +235,71 @@ public class Wishlist {
     private Set<Product> products = new HashSet<>();
 }
 ```
+# Order Module +  Authentication & Authorization (Spring Security + JWT)
+
+This document explains the **Order Module** and the **Spring Security (JWT-based Authentication & Authorization)** used in this e-commerce backend.
+
+---
+
+#  ORDER MODULE
+
+##  Overview
+The **Order module** handles user purchases, order items, statuses, and payment details.  
+Each order is linked to:
+- A **User**
+- A **Shipping Address**
+- One or more **Order Items**
+
+---
+
+##  Order Table — Schema
+
+| Column               | Type            | Description                             |
+|----------------------|-----------------|-----------------------------------------|
+| id                   | BIGINT (PK)     | Unique order ID                         |
+| user_id              | BIGINT (FK)     | User who placed the order               |
+| total_amount         | DECIMAL(10,2)   | Total bill amount                       |
+| payment_status       | VARCHAR(20)     | PENDING / PAID / FAILED / REFUNDED      |
+| order_status         | VARCHAR(20)     | PLACED / SHIPPED / DELIVERED / CANCELLED|
+| payment_method       | VARCHAR(20)     | COD / UPI / CARD / NET_BANKING          |
+| shipping_address_id  | BIGINT (FK)     | Selected address                        |
+| created_at           | TIMESTAMP       | Order creation time                     |
+| updated_at           | TIMESTAMP       | Order update time                       |
+
+---
+
+##  Order Entity (Lombok)
+
+```java
+@Entity
+@Table(name = "orders")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Order {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @ManyToOne
+    private User user;
+
+    private Double totalAmount;
+
+    private String paymentStatus; 
+    private String orderStatus;   
+    private String paymentMethod; 
+
+    @OneToOne
+    private Address shippingAddress;
+
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    private List<OrderItem> orderItems;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+}
+```
